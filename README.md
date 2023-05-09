@@ -1,4 +1,4 @@
-# Go API client for sdk
+# Go API client for spacetraders
 
 SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.
 
@@ -37,7 +37,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import sdk "github.com/realfatcat/go-space-traders"
+import spacetraders "github.com/realfatcat/go-space-traders"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -55,7 +55,7 @@ Default configuration comes with `Servers` field that contains server objects as
 For using other server than the one defined on index 0 set context value `sw.ContextServerIndex` of type `int`.
 
 ```golang
-ctx := context.WithValue(context.Background(), sdk.ContextServerIndex, 1)
+ctx := context.WithValue(context.Background(), spacetraders.ContextServerIndex, 1)
 ```
 
 ### Templated Server URL
@@ -63,7 +63,7 @@ ctx := context.WithValue(context.Background(), sdk.ContextServerIndex, 1)
 Templated server URL is formatted using default variables from configuration or from context value `sw.ContextServerVariables` of type `map[string]string`.
 
 ```golang
-ctx := context.WithValue(context.Background(), sdk.ContextServerVariables, map[string]string{
+ctx := context.WithValue(context.Background(), spacetraders.ContextServerVariables, map[string]string{
 	"basePath": "v2",
 })
 ```
@@ -77,10 +77,10 @@ An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
 ```golang
-ctx := context.WithValue(context.Background(), sdk.ContextOperationServerIndices, map[string]int{
+ctx := context.WithValue(context.Background(), spacetraders.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
-ctx = context.WithValue(context.Background(), sdk.ContextOperationServerVariables, map[string]map[string]string{
+ctx = context.WithValue(context.Background(), spacetraders.ContextOperationServerVariables, map[string]map[string]string{
 	"{classname}Service.{nickname}": {
 		"port": "8443",
 	},
